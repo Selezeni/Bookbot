@@ -6,7 +6,13 @@ book: dict[int, str] = {}
 
 # Функция, возвращающая строку с текстом страницы и ее размер
 def _get_part_text (text: str, start: int, page_size: int) -> tuple[str, int]:
-    pass
+    sign = ",.!:;?"
+    page = text[start:start + page_size]
+    if page[-2] in sign:
+        page = page[:-2]
+    while page[-1] not in sign:
+        page = page[:-1]
+    return page, len(page)
 
 
 # Функция, формирующая словарь книги
