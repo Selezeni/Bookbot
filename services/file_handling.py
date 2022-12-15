@@ -5,14 +5,15 @@ book: dict[int, str] = {}
 
 
 # Функция, возвращающая строку с текстом страницы и ее размер
-def _get_part_text (text: str, start: int, page_size: int) -> tuple[str, int]:
-    sign = ",.!:;?"
-    page = text[start:start + page_size]
-    # if page[-2] in sign:
-    #     page = page[:-2]
-    while page[-1] not in sign:
-        page = page[:-1]
-    return page, len(page)
+def _get_part_text(text: str, start: int, size: int) -> tuple[str, int]:
+    punctuation_marks = [',', '!', ':', ';', '?', '.']
+    cropped_text = text[start:]
+    formatted_text = cropped_text[:size]
+    if (cropped_text[:size][-1] == '.' and cropped_text[:size+1][-1] == '.') and cropped_text[size+1:] != '':
+        formatted_text = formatted_text[:-3]
+    while formatted_text[-1] not in punctuation_marks:
+            formatted_text = formatted_text[:-1]
+    return formatted_text, len(formatted_text)
 
 
 # Функция, формирующая словарь книги
