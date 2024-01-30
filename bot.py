@@ -9,7 +9,7 @@ from handlers.user_handlers import register_user_handlers
 from keyboards.main_menu import set_main_menu
 
 
-# Инициализируем логгер
+# Инициализируем логгер 
 logger = logging.getLogger(__name__)
 
 
